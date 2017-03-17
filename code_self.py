@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 # -*- coding: UTF-8 -*-
 
-#=======生成器==========
+import functools
+
+#================
 
 def fib():
     n, a, b = 0, 0, 1
@@ -42,4 +44,22 @@ print(L2)
 print('\n')
 
 #function map and reduce
+
+def char2int(c):
+    return {'0':0, '1':1, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9}[c]
+
+def qiuji(x, y):
+    return x * 10 + y;
+
+def str2int(s):
+    return functools.reduce(qiuji, map(char2int,s))
+
+print(str2int('123321'))
+
+def str2float(s):
+    p = s.index('.')
+    return functools.reduce(qiuji, map(char2int,s[:p])) + functools.reduce(qiuji, map(char2int,s[p+1:]))/10**(len(s)-1-p)
+
+print(str2float('1233.21'))
+
 
