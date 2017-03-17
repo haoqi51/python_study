@@ -13,7 +13,8 @@ def fib():
 L = fib()
 L = [next(L) for i in range(15)]
 print(L)
-print('\n\n')
+
+print('\n')
 
 def yanghui():
     L = [1]
@@ -28,4 +29,17 @@ for t in yanghui():
     n = n+1
     if n == 10:
         break
+print('\n')
+
+#function map
+
+def normalize(name):
+    return name[0].upper() + name[1:].lower()
+L1 = ['adam', 'LISA', 'barT']
+L2 = list(map(normalize, L1))
+print(L2)
+
+print('\n')
+
+#function map and reduce
 
