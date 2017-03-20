@@ -62,4 +62,61 @@ def str2float(s):
 
 print(str2float('1233.21'))
 
+#=====filter==============
+
+def _odd_iter():
+    n = 1
+    while True:
+        n = n + 2
+        yield n
+
+def _not_divisible(n):
+    return lambda x: x % n > 0  # x?
+
+def primes():
+    yield 2
+    it = _odd_iter()
+    while True:
+        n = next(it)
+        yield n
+        it = filter(_not_divisible(n), it)
+
+for n in primes():
+    if n <100:
+        print(n)
+    else:
+        break
+
+def is_palindrom(n):
+    return str(n) == str(n)[::-1]
+
+output = filter(is_palindrom, range(1, 1000))
+print(list(output))
+
+#====sorted=====
+
+L = [36, 5, -12, 9, -21]
+
+L2 = sorted(L)
+print(L2)
+
+L2 = sorted(L, key = abs)
+print(L2)
+
+L2 = sorted(L, key = abs, reverse=True)
+print(L2)
+
+L = [('Bob', 75), ('Adam', 92), ('Bart', 66), ('Lisa', 88)]
+
+def by_name(t):
+    return t[0]
+
+def by_score(t):
+    return t[1]
+
+L2 = sorted(L, key=by_name)
+print(L2)
+
+L2 = sorted(L, key=by_score, reverse=True)
+print(L2)
 
