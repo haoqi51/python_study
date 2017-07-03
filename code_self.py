@@ -2,18 +2,9 @@
 # -*- coding: UTF-8 -*-
 
 import functools
+import study_module
 
-'''
-import requests
-
-r = requests.get("http://www.baidu.com")
-print(r.status_code)
-print(r.headers['content-type'])
-print(r.encoding)
-print(r.text)
-'''
-
-#Éú³ÉÆ÷yield
+#ç”Ÿæˆå™¨yield
 
 def fib():
     n, a, b = 0, 0, 1
@@ -43,7 +34,7 @@ for t in yanghui():
         break
 print('\n')
 
-#function map map½«´«ÈëµÄº¯ÊıÒÀ´Î×÷ÓÃµ½ĞòÁĞµÄÃ¿¸öÔªËØ£¬²¢°Ñ½á¹û×÷ÎªĞÂµÄIterator·µ»Ø
+#function map mapå°†ä¼ å…¥çš„å‡½æ•°ä¾æ¬¡ä½œç”¨åˆ°åºåˆ—çš„æ¯ä¸ªå…ƒç´ ï¼Œå¹¶æŠŠç»“æœä½œä¸ºæ–°çš„Iteratorè¿”å›
 def normalize(name):
     return name[0].upper() + name[1:].lower()
 L1 = ['adam', 'LISA', 'barT']
@@ -52,7 +43,7 @@ print(L2)
 
 print('\n')
 
-#reduce Õâ¸öº¯Êı±ØĞë½ÓÊÕÁ½¸ö²ÎÊı£¬reduce°Ñ½á¹û¼ÌĞøºÍĞòÁĞµÄÏÂÒ»¸öÔªËØ×öÀÛ»ı¼ÆËã
+#reduce è¿™ä¸ªå‡½æ•°å¿…é¡»æ¥æ”¶ä¸¤ä¸ªå‚æ•°ï¼ŒreduceæŠŠç»“æœç»§ç»­å’Œåºåˆ—çš„ä¸‹ä¸€ä¸ªå…ƒç´ åšç´¯ç§¯è®¡ç®—
 #function map and reduce
 
 def char2int(c):
@@ -72,15 +63,15 @@ def str2float(s):
 
 print(str2float('1233.21'))
 
-#filterº¯Êı£¬¸ù¾İÉ¸Ñ¡Æ÷·µ»ØTrue»¹ÊÇFalse¾ö¶¨±£Áô»¹ÊÇ¶ªÆú¸ÃÔªËØ
-#´Ó3¿ªÊ¼µÄÆæÊıĞòÁĞ
+#filterå‡½æ•°ï¼Œæ ¹æ®ç­›é€‰å™¨è¿”å›Trueè¿˜æ˜¯Falseå†³å®šä¿ç•™è¿˜æ˜¯ä¸¢å¼ƒè¯¥å…ƒç´ 
+#ä»3å¼€å§‹çš„å¥‡æ•°åºåˆ—
 def _odd_iter():
     n = 1
     while True:
         n = n + 2
         yield n
 
-#lambda x: x % n > 0 ÎªÄäÃûº¯Êı
+#lambda x: x % n > 0 ä¸ºåŒ¿åå‡½æ•°
 def _not_divisible(n):
     return lambda x: x % n > 0
 '''
@@ -88,10 +79,10 @@ def _not_divisible(n,x):
     return x % n > 0
 '''
 
-#ËØÊıÉú³ÉÆ÷
+#ç´ æ•°ç”Ÿæˆå™¨
 def primes():
     yield 2
-    it = _odd_iter() #¶¨ÒåitÊÇÒ»¸ö´Ó3¿ªÊ¼µÄÆæÊıĞòÁĞ
+    it = _odd_iter() #å®šä¹‰itæ˜¯ä¸€ä¸ªä»3å¼€å§‹çš„å¥‡æ•°åºåˆ—
     while True:
         n = next(it)
         yield n
@@ -103,16 +94,16 @@ for n in primes():
     else:
         break
 
-#»ØÊı 
+#å›æ•° 
 def is_palindrom(n):
     return str(n) == str(n)[::-1]
 
 output = filter(is_palindrom, range(1, 100))
 print(list(output))
 
-#sorted ÅÅĞò£¬
-#²ÎÊıkeyÖ¸¶¨µÄº¯Êı½«×÷ÓÃÓÚlistµÄÃ¿Ò»¸öÔªËØÉÏ£¬²¢¸ù¾İkeyº¯Êı·µ»ØµÄ½á¹û½øĞĞÅÅĞò
-#²ÎÊıreverse=True£¬·´ÏòÅÅĞò
+#sorted æ’åºï¼Œ
+#å‚æ•°keyæŒ‡å®šçš„å‡½æ•°å°†ä½œç”¨äºlistçš„æ¯ä¸€ä¸ªå…ƒç´ ä¸Šï¼Œå¹¶æ ¹æ®keyå‡½æ•°è¿”å›çš„ç»“æœè¿›è¡Œæ’åº
+#å‚æ•°reverse=Trueï¼Œåå‘æ’åº
 L = [36, 5, -12, 9, -21]
 
 L2 = sorted(L)
@@ -138,10 +129,10 @@ print(L2)
 L2 = sorted(L, key=by_score, reverse=True)
 print(L2)
 
-#»ñÈ¡º¯ÊıÃû
+#è·å–å‡½æ•°å
 print(sorted.__name__)
 
-#·µ»Øº¯Êı
+#è¿”å›å‡½æ•°
 def lazy_sum(*args):
     def sum():
         ax = 0
@@ -150,18 +141,18 @@ def lazy_sum(*args):
         return ax
     return sum
 
-f = lazy_sum(1, 3, 5, 7, 9) #´ËÊ±fÎªsumº¯Êı
+f = lazy_sum(1, 3, 5, 7, 9) #æ­¤æ—¶fä¸ºsumå‡½æ•°
 print(f)
 sum = f()
 print(sum)
 
-#±Õ°ü
+#é—­åŒ…
 f1 = lazy_sum(1, 3, 5, 7, 9)
 f2 = lazy_sum(1, 3, 5, 7, 9)
 print(f1==f2)
 
-# ·µ»Ø±Õ°üÊ±ÀÎ¼ÇµÄÒ»µã¾ÍÊÇ£º
-# ·µ»Øº¯Êı²»ÒªÒıÓÃÈÎºÎÑ­»·±äÁ¿£¬»òÕßºóĞø»á·¢Éú±ä»¯µÄ±äÁ¿¡£
+# è¿”å›é—­åŒ…æ—¶ç‰¢è®°çš„ä¸€ç‚¹å°±æ˜¯ï¼š
+# è¿”å›å‡½æ•°ä¸è¦å¼•ç”¨ä»»ä½•å¾ªç¯å˜é‡ï¼Œæˆ–è€…åç»­ä¼šå‘ç”Ÿå˜åŒ–çš„å˜é‡ã€‚
 def count():
     fs = []
     for i in range(1, 4):
@@ -175,9 +166,9 @@ print(f1())
 print(f2())
 print(f3())
 
-# Èç¹ûÒ»¶¨ÒªÒıÓÃÑ­»·±äÁ¿ÔõÃ´°ì£¿
-# ·½·¨ÊÇÔÙ´´½¨Ò»¸öº¯Êı£¬ÓÃ¸Ãº¯ÊıµÄ²ÎÊı°ó¶¨Ñ­»·±äÁ¿µ±Ç°µÄÖµ£¬
-# ÎŞÂÛ¸ÃÑ­»·±äÁ¿ºóĞøÈçºÎ¸ü¸Ä£¬ÒÑ°ó¶¨µ½º¯Êı²ÎÊıµÄÖµ²»±ä£º
+# å¦‚æœä¸€å®šè¦å¼•ç”¨å¾ªç¯å˜é‡æ€ä¹ˆåŠï¼Ÿ
+# æ–¹æ³•æ˜¯å†åˆ›å»ºä¸€ä¸ªå‡½æ•°ï¼Œç”¨è¯¥å‡½æ•°çš„å‚æ•°ç»‘å®šå¾ªç¯å˜é‡å½“å‰çš„å€¼ï¼Œ
+# æ— è®ºè¯¥å¾ªç¯å˜é‡åç»­å¦‚ä½•æ›´æ”¹ï¼Œå·²ç»‘å®šåˆ°å‡½æ•°å‚æ•°çš„å€¼ä¸å˜ï¼š
 def count():
     def f(j):
         def g():
@@ -185,7 +176,7 @@ def count():
         return g
     fs = []
     for i in range(1, 4):
-        fs.append(f(i)) # f(i)Á¢¿Ì±»Ö´ĞĞ£¬Òò´ËiµÄµ±Ç°Öµ±»´«Èëf()
+        fs.append(f(i)) # f(i)ç«‹åˆ»è¢«æ‰§è¡Œï¼Œå› æ­¤içš„å½“å‰å€¼è¢«ä¼ å…¥f()
     return fs
 
 f1, f2, f3 = count()
@@ -193,8 +184,17 @@ print(f1())
 print(f2())
 print(f3())
 
-# ×°ÊÎÆ÷
+# è£…é¥°å™¨
+'''
 def log(func):
+    def wrapper(*args, **kw):
+        print('call %s():' % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+'''
+
+def log(func):
+    @functools.wraps(func)
     def wrapper(*args, **kw):
         print('call %s():' % func.__name__)
         return func(*args, **kw)
@@ -203,6 +203,22 @@ def log(func):
 @log
 def now():
     print('2016-3-20')
-
 now()
+print(now.__name__)
 
+# å¸¦å‚æ•°çš„è£…é¥°å™¨
+def log(text):
+    def decorator(func):
+        def wrapper(*args, **kw):
+            print('%s %s():' % (text, func.__name__))
+            return func(*args, **kw)
+        return wrapper
+    return decorator
+
+@log('excute')
+def now1():
+    print('2017-5-23')
+now1()
+print(now1.__name__)
+
+study_module.test()
